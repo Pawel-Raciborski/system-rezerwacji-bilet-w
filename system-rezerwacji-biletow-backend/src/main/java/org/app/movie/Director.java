@@ -1,4 +1,4 @@
-package org.app.model;
+package org.app.movie;
 
 
 import javax.persistence.*;

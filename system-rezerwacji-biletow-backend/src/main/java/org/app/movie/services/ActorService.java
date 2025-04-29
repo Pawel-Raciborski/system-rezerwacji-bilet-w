@@ -1,31 +1,25 @@
-package org.app.services;
+package org.app.movie.services;
 
+import lombok.RequiredArgsConstructor;
 import org.app.db.HibernateUtil;
-import org.app.model.Actor;
+import org.app.movie.Actor;
+import org.app.movie.repository.ActorRepository;
+import org.app.movie.validators.ActorValidator;
 import org.app.web_services.dto.ActorDto;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+@RequiredArgsConstructor
 public class ActorService {
-    private final SessionFactory sessionFactory;
-
-    public ActorService() {
-        this.sessionFactory = HibernateUtil.getSessionFactory();
-    }
+    private final ActorRepository actorRepository;
+    private final ActorValidator actorValidator;
 
     public Actor save(ActorDto actorDto){
         Actor newActor = buildNewActor(actorDto);
 
-        try(Session session = sessionFactory.openSession()){
-            session.beginTransaction();
-            session.persist(newActor);
+        actorValidator.checkActorWithEmailExists(newActor.getEmail());
 
-            session.getTransaction().commit();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-        return newActor;
+        return actorRepository.save(newActor);
     }
 
     private static Actor buildNewActor(ActorDto actorDto) {

@@ -1,4 +1,4 @@
-package org.app.model;
+package org.app.movie;
 
 
 
@@ -19,6 +19,9 @@ public class Movie {
     @Column(name="length")
     private Duration length;
 
+    @Column(name="poster_path")
+    private String posterPath;
+
     @Column(name="stars")
     private BigDecimal stars;
 
@@ -26,4 +29,7 @@ public class Movie {
     private Director director;
     @ManyToMany(mappedBy = "actorMovies", fetch = FetchType.LAZY)
     private Set<Actor> actorMovies;
+
+    @OneToMany
+    private Set<Spectacle> spectacles;
 }

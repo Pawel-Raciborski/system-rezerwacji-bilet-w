@@ -12,8 +12,13 @@
         <property name="show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
 
-        <mapping class="org.app.model.Director"/>
-        <mapping class="org.app.model.Actor"/>
-        <mapping class="org.app.model.Movie"/>
+        <mapping class="org.app.movie.Director"/>
+        <mapping class="org.app.movie.Actor"/>
+        <mapping class="org.app.movie.Movie"/>
+        <mapping class="org.app.movie.Spectacle"/>
+        <mapping class="org.app.reservation.Reservation"/>
+        <mapping class="org.app.room.Room"/>
+        <mapping class="org.app.room.Seat"/>
+        <mapping class="org.app.user.model.User"/>
     </session-factory>
 </hibernate-configuration>

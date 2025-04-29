@@ -1,6 +1,6 @@
 package org.app.web_services;
 
-import org.app.model.Actor;
+import org.app.movie.Actor;
 import org.app.web_services.dto.ActorDto;
 
 import javax.jws.WebMethod;

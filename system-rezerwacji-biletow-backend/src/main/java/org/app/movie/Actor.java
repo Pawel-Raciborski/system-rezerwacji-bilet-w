@@ -1,12 +1,14 @@
-package org.app.model;
+package org.app.movie;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Set;
 
+@Getter
 @Entity
 @Builder
 @NoArgsConstructor
