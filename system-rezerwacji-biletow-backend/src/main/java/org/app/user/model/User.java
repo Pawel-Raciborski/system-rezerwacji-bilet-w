@@ -1,12 +1,20 @@
 package org.app.user.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.app.reservation.Reservation;
 
 import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
 
+@Builder
 @Entity
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="user_table")
 public class User {
     @Id

@@ -11,5 +11,21 @@ services:
     volumes:
       - db_data:/var/lib/postgres/data
     restart: always
+    networks:
+      - app-network
+  tomcat_server:
+    image: tomcat:9-jdk8-corretto
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    volumes:
+      - ../target/system-rezerwacji-biletow-backend-1.0-SNAPSHOT.war:/usr/local/tomcat/webapps/kin_app.war
+    networks:
+      - app-network
 volumes:
   db_data:
+
+networks:
+  app-network:
+    driver: bridge
