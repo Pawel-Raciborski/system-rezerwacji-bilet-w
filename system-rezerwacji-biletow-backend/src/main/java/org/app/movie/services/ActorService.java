@@ -9,6 +9,8 @@ import org.app.web_services.dto.ActorDto;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 public class ActorService {
     private final ActorRepository actorRepository;
@@ -29,5 +31,9 @@ public class ActorService {
                 .email(actorDto.getEmail())
                 .phoneNumber(actorDto.getPhoneNumber())
                 .build();
+    }
+
+    public List<Actor> findAll() {
+        return actorRepository.findAll();
     }
 }

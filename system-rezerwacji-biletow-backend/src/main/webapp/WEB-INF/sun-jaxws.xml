@@ -4,4 +4,9 @@
             name="UserWebService"
             implementation="org.app.web_services.impl.UserWebServiceImpl"
             url-pattern="/ws/UserWebService"/>
+    <endpoint
+        name="ActorWebService"
+        implementation="org.app.web_services.impl.ActorWebServiceImpl"
+        url-pattern="/ws/ActorWebService"
+    />
 </endpoints>

@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 import javax.persistence.criteria.CriteriaQuery;
+import java.util.List;
 import java.util.Optional;
 
 public class ActorRepositoryImpl implements ActorRepository {
@@ -45,5 +46,20 @@ public class ActorRepositoryImpl implements ActorRepository {
             e.printStackTrace();
         }
         return optionalActor;
+    }
+
+    @Override
+    public List<Actor> findAll() {
+        List<Actor> actors;
+        try(Session session = sessionFactory.openSession()){
+            session.beginTransaction();
+            Query<Actor> findAll = session.createQuery("FROM Actor a", Actor.class);
+
+            actors = findAll.getResultList();
+            session.getTransaction().commit();
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+        return actors;
     }
 }
