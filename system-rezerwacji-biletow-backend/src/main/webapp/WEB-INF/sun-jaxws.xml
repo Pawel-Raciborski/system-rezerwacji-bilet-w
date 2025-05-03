@@ -9,4 +9,10 @@
         implementation="org.app.web_services.impl.ActorWebServiceImpl"
         url-pattern="/ws/ActorWebService"
     />
+
+    <endpoint
+            name="MovieWebService"
+            implementation="org.app.web_services.impl.MovieWebServiceImpl"
+            url-pattern="/ws/MovieWebService"
+    />
 </endpoints>

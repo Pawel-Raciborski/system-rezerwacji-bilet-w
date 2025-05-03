@@ -2,31 +2,47 @@ package org.app.movie;
 
 
 
+import lombok.*;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Set;
 
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "movie")
-public class Movie {
+public class Movie implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="move_id")
     private Long movieId;
 
-    @Column(name="length")
-    private Duration length;
+    @Column
+    private String title;
 
-    @Column(name="poster_path")
-    private String posterPath;
+    @Column
+    private String description;
+
+    @Column(name="length")
+    private String length;
+
+    @Lob
+    @Column(name="poseter_data")
+    private byte[] posterData;
 
     @Column(name="stars")
     private BigDecimal stars;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
     private Director director;
+
     @ManyToMany(mappedBy = "actorMovies", fetch = FetchType.LAZY)
     private Set<Actor> actorMovies;
 
