@@ -40,7 +40,7 @@ public class Movie implements Serializable {
     @Column(name="stars")
     private BigDecimal stars;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
     private Director director;
 
     @ManyToMany(mappedBy = "actorMovies", fetch = FetchType.LAZY)
