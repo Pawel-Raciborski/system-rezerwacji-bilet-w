@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
 import java.time.Duration;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -25,7 +26,7 @@ import java.time.Duration;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class MovieDto {
     @XmlElement
-    private Long movieId;
+    private UUID movieId;
 
     @XmlElement
     private String title;

@@ -19,12 +19,12 @@ public class ActorRepositoryImpl implements ActorRepository {
 
     @Override
     public Actor save(Actor actor) {
-        try(Session session = sessionFactory.openSession()){
+        try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.persist(actor);
+            session.merge(actor);
 
             session.getTransaction().commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -35,14 +35,14 @@ public class ActorRepositoryImpl implements ActorRepository {
     public Optional<Actor> findByEmail(String email) {
         Optional<Actor> optionalActor = Optional.empty();
 
-        try(Session session = sessionFactory.openSession()){
+        try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             Query<Actor> query = session.createQuery("select a from Actor a where a.email = :email", Actor.class);
             query.setParameter("email", email);
 
             optionalActor = query.uniqueResultOptional();
             session.getTransaction().commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return optionalActor;
@@ -51,15 +51,29 @@ public class ActorRepositoryImpl implements ActorRepository {
     @Override
     public List<Actor> findAll() {
         List<Actor> actors;
-        try(Session session = sessionFactory.openSession()){
+        try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             Query<Actor> findAll = session.createQuery("FROM Actor a", Actor.class);
 
             actors = findAll.getResultList();
             session.getTransaction().commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return actors;
+    }
+
+    @Override
+    public Optional<Actor> findById(Long actorId) {
+        try (Session session = sessionFactory.openSession()) {
+            session.getTransaction().begin();
+            Query<Actor> query = session.createQuery("FROM Actor a where a.id = :id", Actor.class);
+            query.setParameter("id", actorId);
+            session.getTransaction().commit();
+
+            return query.uniqueResultOptional();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

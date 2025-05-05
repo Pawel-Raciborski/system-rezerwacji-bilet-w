@@ -26,6 +26,7 @@ public class ActorService {
 
     private static Actor buildNewActor(ActorDto actorDto) {
         return Actor.builder()
+                .actorId(actorDto.getId())
                 .name(actorDto.getName())
                 .surname(actorDto.getSurname())
                 .email(actorDto.getEmail())

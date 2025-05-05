@@ -11,4 +11,6 @@ public interface ActorRepository {
     Optional<Actor> findByEmail(String email);
 
     List<Actor> findAll();
+
+    Optional<Actor> findById(Long actorId);
 }

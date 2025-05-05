@@ -1,14 +1,13 @@
 package org.app.movie;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
+import java.util.UUID;
 
 @Getter
+@Setter
 @Entity
 @Builder
 @NoArgsConstructor
@@ -17,8 +16,8 @@ import java.util.Set;
 public class Actor {
     @Id
     @Column(name = "actor_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long actorId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID actorId;
 
     private String name;
     private String surname;

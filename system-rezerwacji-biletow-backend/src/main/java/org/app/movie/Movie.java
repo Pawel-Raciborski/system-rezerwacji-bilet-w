@@ -3,12 +3,14 @@ package org.app.movie;
 
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Set;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -20,9 +22,10 @@ import java.util.Set;
 public class Movie implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2",strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name="move_id")
-    private Long movieId;
+    private UUID movieId;
 
     @Column
     private String title;

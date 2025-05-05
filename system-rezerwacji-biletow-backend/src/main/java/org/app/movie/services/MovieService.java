@@ -1,6 +1,5 @@
 package org.app.movie.services;
 
-import lombok.NoArgsConstructor;
 import org.app.movie.Actor;
 import org.app.movie.Movie;
 import org.app.movie.dto.MovieDto;
@@ -10,7 +9,10 @@ import org.app.movie.repository.ActorRepositoryImpl;
 import org.app.movie.repository.MovieRepository;
 import org.app.movie.repository.MovieRepositoryImpl;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 
 public class MovieService {
@@ -25,10 +27,8 @@ public class MovieService {
         return movieRepository.save(MovieMapper.mapToMovie(movie));
     }
 
-    public void addActor(Movie movie, Actor actor){
-        movie.getActorMovies().add(actor);
-        actorRepository.save(actor);
-        movieRepository.save(movie);
+    public void addActor(UUID movie, UUID actorId){
+        movieRepository.addActorToMovie(movie,actorId);
     }
 
     public List<Movie> findByTitle(String title){
@@ -36,4 +36,7 @@ public class MovieService {
     }
 
 
+    public Movie findById(Long movieId) {
+        return movieRepository.findById(movieId).orElseThrow(() -> new RuntimeException("Nie znaleziono filmu!"));
+    }
 }

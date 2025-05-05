@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Builder
 @NoArgsConstructor
@@ -14,7 +15,7 @@ import java.io.Serializable;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class LoggedUser implements Serializable {
     @XmlElement
-    private Long userId;
+    private UUID userId;
     @XmlElement
     private String name;
     @XmlElement
