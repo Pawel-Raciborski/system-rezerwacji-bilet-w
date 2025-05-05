@@ -1,4 +1,4 @@
-package org.app.room.dto;
+package org.app.movie.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,13 +15,17 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@XmlRootElement(name="room")
+@XmlRootElement(name="actor")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class RoomDto {
+public class ActorDto {
     @XmlElement
-    private UUID roomId;
+    private UUID id;
     @XmlElement
-    private String roomNumber;
-    @XmlElement(defaultValue = "0")
-    private Integer numberOfPlaces;
+    private String name;
+    @XmlElement
+    private String surname;
+    @XmlElement
+    private String phoneNumber;
+    @XmlElement
+    private String email;
 }

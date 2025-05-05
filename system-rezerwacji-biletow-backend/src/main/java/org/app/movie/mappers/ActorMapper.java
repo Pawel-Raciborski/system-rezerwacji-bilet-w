@@ -1,7 +1,7 @@
-package org.app.web_services.mappers;
+package org.app.movie.mappers;
 
 import org.app.movie.Actor;
-import org.app.web_services.dto.ActorDto;
+import org.app.movie.dto.ActorDto;
 
 public interface ActorMapper {
     static ActorDto mapToDto(Actor actor){

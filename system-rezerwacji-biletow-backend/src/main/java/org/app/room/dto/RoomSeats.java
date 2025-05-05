@@ -9,19 +9,15 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.UUID;
+import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@XmlRootElement(name="room")
+@XmlRootElement(name="roomSeat")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class RoomDto {
+public class RoomSeats {
     @XmlElement
-    private UUID roomId;
-    @XmlElement
-    private String roomNumber;
-    @XmlElement(defaultValue = "0")
-    private Integer numberOfPlaces;
+    private List<SeatDto> seats;
 }

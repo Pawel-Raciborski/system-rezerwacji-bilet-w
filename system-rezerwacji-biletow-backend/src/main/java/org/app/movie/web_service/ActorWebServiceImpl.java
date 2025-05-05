@@ -1,23 +1,20 @@
-package org.app.web_services.impl;
+package org.app.movie.web_service;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.app.movie.Actor;
 import org.app.movie.repository.ActorRepositoryImpl;
 import org.app.movie.services.ActorService;
 import org.app.movie.validators.ActorValidator;
-import org.app.web_services.ActorWebService;
-import org.app.web_services.dto.ActorDto;
-import org.app.web_services.dto.ActorList;
-import org.app.web_services.mappers.ActorMapper;
+import org.app.movie.dto.ActorDto;
+import org.app.movie.dto.ActorList;
+import org.app.movie.mappers.ActorMapper;
 
 import javax.jws.WebService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@WebService(endpointInterface = "org.app.web_services.ActorWebService")
+@WebService(endpointInterface = "org.app.movie.web_service.ActorWebService")
 @AllArgsConstructor
 public class ActorWebServiceImpl implements ActorWebService {
     private ActorService actorService;

@@ -1,4 +1,4 @@
-package org.app.web_services;
+package org.app.user.web_service;
 
 import org.app.user.model.Credentials;
 import org.app.user.model.LoggedUser;

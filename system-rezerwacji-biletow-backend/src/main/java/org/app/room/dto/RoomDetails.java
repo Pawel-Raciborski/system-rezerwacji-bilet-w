@@ -1,4 +1,4 @@
-package org.app.web_services.dto;
+package org.app.room.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,15 +9,21 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.List;
+import java.util.UUID;
 
-@Builder
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@XmlRootElement(name="loggedUser")
+@XmlRootElement(name="roomDetails")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ActorList {
-    @XmlElement(name="actor")
-    private List<ActorDto> actors;
+public class RoomDetails {
+    @XmlElement
+    private UUID roomId;
+    @XmlElement
+    private String roomNumber;
+    @XmlElement
+    private Integer numberOfPlaces;
+    @XmlElement
+    private RoomSeats roomSeats;
 }

@@ -1,13 +1,10 @@
 package org.app.movie.services;
 
 import lombok.RequiredArgsConstructor;
-import org.app.db.HibernateUtil;
 import org.app.movie.Actor;
 import org.app.movie.repository.ActorRepository;
 import org.app.movie.validators.ActorValidator;
-import org.app.web_services.dto.ActorDto;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.app.movie.dto.ActorDto;
 
 import java.util.List;
 

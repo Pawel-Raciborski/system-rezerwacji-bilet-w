@@ -1,4 +1,4 @@
-package org.app.room.dto;
+package org.app.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,19 +9,17 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.UUID;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@XmlRootElement(name="room")
+@XmlRootElement(name="response")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class RoomDto {
+public class Response<T> {
     @XmlElement
-    private UUID roomId;
+    private T data;
+
     @XmlElement
-    private String roomNumber;
-    @XmlElement(defaultValue = "0")
-    private Integer numberOfPlaces;
+    private String responseMessage;
 }

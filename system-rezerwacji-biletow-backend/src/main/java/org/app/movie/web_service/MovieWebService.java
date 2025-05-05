@@ -1,4 +1,4 @@
-package org.app.web_services;
+package org.app.movie.web_service;
 
 import org.app.movie.Movie;
 import org.app.movie.dto.MovieDto;

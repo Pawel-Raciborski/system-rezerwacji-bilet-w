@@ -1,4 +1,4 @@
-package org.app.movie.repository;
+package org.app.room.repository;
 
 import org.app.room.Room;
 

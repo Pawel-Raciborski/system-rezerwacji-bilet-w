@@ -1,5 +1,9 @@
 package org.app.room;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.app.movie.Spectacle;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -7,6 +11,10 @@ import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
 
+@Builder
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "room")
 public class Room {

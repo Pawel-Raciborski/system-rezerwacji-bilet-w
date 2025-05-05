@@ -1,20 +1,18 @@
-package org.app.web_services.impl;
+package org.app.movie.web_service;
 
-import org.app.movie.Movie;
 import org.app.movie.dto.MovieDto;
 import org.app.movie.dto.Movies;
 import org.app.movie.mappers.MovieMapper;
 import org.app.movie.services.MovieService;
-import org.app.web_services.MovieWebService;
+import org.app.movie.web_service.MovieWebService;
 
-import javax.jws.WebParam;
 import javax.jws.WebService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@WebService(endpointInterface = "org.app.web_services.MovieWebService")
+@WebService(endpointInterface = "org.app.movie.web_service.MovieWebService")
 public class MovieWebServiceImpl implements MovieWebService {
     private final MovieService movieService;
     public MovieWebServiceImpl() {

@@ -1,4 +1,4 @@
-package org.app.web_services.dto;
+package org.app.room.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,17 +15,13 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@XmlRootElement(name="loggedUser")
+@XmlRootElement(name="seat")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ActorDto {
+public class SeatDto {
     @XmlElement
-    private UUID id;
+    private UUID seatId;
     @XmlElement
-    private String name;
+    private String row;
     @XmlElement
-    private String surname;
-    @XmlElement
-    private String phoneNumber;
-    @XmlElement
-    private String email;
+    private Integer placeNumber;
 }
