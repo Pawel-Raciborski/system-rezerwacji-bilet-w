@@ -48,11 +48,10 @@ public class MovieRepositoryImpl implements MovieRepository {
     }
 
     @Override
-    public Optional<Movie> findById(Long movieId) {
+    public Optional<Movie> findById(UUID movieId) {
         try (Session session = sessionFactory.openSession()) {
-            Query<Movie> findById = session.createQuery("FROM Movie m WHERE m.id = :id", Movie.class);
-            findById.setParameter("id", movieId);
-            return findById.uniqueResultOptional();
+            Movie movie = session.get(Movie.class, movieId);
+            return Optional.ofNullable(movie);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -80,7 +79,7 @@ public class MovieRepositoryImpl implements MovieRepository {
     }
 
     @Override
-    public List<Movie> findActorMovies(Long actorId) {
+    public List<Movie> findActorMovies(UUID actorId) {
         try (Session session = sessionFactory.openSession()) {
             Query<Movie> query = session.createQuery("FROM Movie m JOIN FETCH m.actorMovies a where a.id = :actorId", Movie.class);
             query.setParameter("actorId", actorId);

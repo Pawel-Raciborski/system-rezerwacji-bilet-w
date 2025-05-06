@@ -4,11 +4,12 @@ import org.app.movie.Movie;
 import org.app.movie.dto.MovieDto;
 
 public interface MovieMapper {
+    static final String PREFIX = "PT";
     static Movie mapToMovie(MovieDto movieDto){
         return Movie.builder()
                 .director(DirectorMapper.mapToDirector(movieDto.getDirector()))
                 .stars(movieDto.getStars())
-                .length(movieDto.getLength())
+                .length(PREFIX.concat(movieDto.getLength()))
                 .posterData(movieDto.getPosterData())
                 .description(movieDto.getDescription())
                 .title(movieDto.getTitle())

@@ -12,9 +12,9 @@ public interface MovieRepository {
 
     List<Movie> findByTitle(String title);
 
-    Optional<Movie> findById(Long movieId);
+    Optional<Movie> findById(UUID movieId);
 
     void addActorToMovie(UUID movieId, UUID actorId);
 
-    List<Movie> findActorMovies(Long actorId);
+    List<Movie> findActorMovies(UUID actorId);
 }

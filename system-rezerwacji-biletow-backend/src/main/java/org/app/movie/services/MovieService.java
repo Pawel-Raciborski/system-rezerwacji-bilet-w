@@ -36,7 +36,7 @@ public class MovieService {
     }
 
 
-    public Movie findById(Long movieId) {
+    public Movie findById(UUID movieId) {
         return movieRepository.findById(movieId).orElseThrow(() -> new RuntimeException("Nie znaleziono filmu!"));
     }
 }

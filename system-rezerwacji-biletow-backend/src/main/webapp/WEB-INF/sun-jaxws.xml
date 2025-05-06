@@ -21,4 +21,10 @@
             implementation="org.app.room.web_service.RoomWebServiceImpl"
             url-pattern="/ws/RoomWebService"
     />
+
+    <endpoint
+            name="SpectacleWebService"
+            implementation="org.app.movie.web_service.SpectacleWebServiceImpl"
+            url-pattern="/ws/SpectacleWebService"
+    />
 </endpoints>
