@@ -35,4 +35,7 @@ public class SpectacleDto {
 
     @XmlElement
     private String date;
+
+    @XmlElement
+    private Integer availablePlaces;
 }

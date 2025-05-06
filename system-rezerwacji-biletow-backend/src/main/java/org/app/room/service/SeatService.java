@@ -7,7 +7,9 @@ import org.app.room.repository.SeatRepositoryImpl;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 public class SeatService {
     private final SeatRepository seatRepository;
@@ -61,5 +63,9 @@ public class SeatService {
         }
 
         seats.forEach(seatRepository::save);
+    }
+
+    public List<Seat> findSpectacleSeats(UUID spectacleId) {
+        return seatRepository.findSpectacleSeats(spectacleId);
     }
 }
