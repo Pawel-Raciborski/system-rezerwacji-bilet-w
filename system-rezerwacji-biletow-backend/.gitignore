@@ -12,6 +12,7 @@ target/
 *.iml
 *.ipr
 
+docker-compose/*.jks
 ### Eclipse ###
 .apt_generated
 .classpath
