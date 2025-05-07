@@ -16,4 +16,7 @@ public interface SpectacleRepository {
     List<Spectacle> findWithRoomIdAndDate(UUID roomId, LocalDateTime date);
 
     Optional<Spectacle> findSpectaclesBetweenDates(UUID roomId, LocalDateTime left, LocalDateTime right);
+
+    Optional<Spectacle> findById(UUID spectacleId);
+
 }

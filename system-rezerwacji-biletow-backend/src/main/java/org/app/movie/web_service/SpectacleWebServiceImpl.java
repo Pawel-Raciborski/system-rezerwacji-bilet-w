@@ -1,5 +1,6 @@
 package org.app.movie.web_service;
 
+import org.app.movie.Spectacle;
 import org.app.movie.dto.CreateSpectacleRequest;
 import org.app.movie.dto.SpectacleDto;
 import org.app.movie.dto.SpectacleResponse;
@@ -39,7 +40,8 @@ public class SpectacleWebServiceImpl implements SpectacleWebService {
 
     @Override
     public SpectacleSeats getAvailablePlacesForSpectacle(UUID spectacleId) {
-        List<SeatDto> spectacleSeats = seatService.findSpectacleSeats(spectacleId).stream().map(SeatMapper::mapToSeatDto).collect(Collectors.toList());
+        Spectacle spectacle = spectacleService.findById(spectacleId);
+        List<SeatDto> spectacleSeats = seatService.findSpectacleSeats(spectacle.getId()).stream().map(SeatMapper::mapToSeatDto).collect(Collectors.toList());
 
         return SpectacleSeats.builder()
                 .seats(spectacleSeats)

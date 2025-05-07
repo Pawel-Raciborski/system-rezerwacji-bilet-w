@@ -1,6 +1,7 @@
 package org.app.user.web_service;
 
 import lombok.AllArgsConstructor;
+import org.app.user.mapper.UserMapper;
 import org.app.user.model.Credentials;
 import org.app.user.model.LoggedUser;
 import org.app.user.model.UserDto;
@@ -15,12 +16,12 @@ public class UserWebServiceImpl implements UserWebService {
     private final UserService userService;
 
     public UserWebServiceImpl() {
-        this.userService = new UserService(new UserRepositoryImpl());
+        this.userService = new UserService();
     }
 
     @Override
-    public void saveUser(UserDto user) {
-        userService.register(user);
+    public LoggedUser saveUser(UserDto user) {
+        return UserMapper.mapToLoggedUser(userService.register(user));
     }
 
     @Override

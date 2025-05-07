@@ -1,28 +1,30 @@
 package org.app.room.service;
 
+import org.app.movie.Spectacle;
+import org.app.reservation.Reservation;
 import org.app.room.Room;
 import org.app.room.Seat;
 import org.app.room.repository.SeatRepository;
 import org.app.room.repository.SeatRepositoryImpl;
+import org.app.room.validator.SeatValidator;
 
-import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class SeatService {
     private final SeatRepository seatRepository;
+    private final SeatValidator seatValidator;
 
     public SeatService() {
         this.seatRepository = new SeatRepositoryImpl();
+        this.seatValidator = new SeatValidator();
     }
 
     public void createSeatsForRoom(Room savedRoom) {
         Integer numberOfPlaces = savedRoom.getNumberOfPlaces();
 
         // creating square based seats
-        Set<Seat> seats = new HashSet<>();
         int numberOfRows = (int) Math.sqrt(numberOfPlaces);
         System.out.println("NUMBER OF ROWS: " + numberOfRows);
         int row = 0;
@@ -41,8 +43,7 @@ public class SeatService {
                         .placeNumber(seat)
                         .room(savedRoom)
                         .build();
-                System.out.println("Seat: " + seatToCreate);
-                seats.add(seatToCreate);
+                seatRepository.save(seatToCreate);
             }
             prevSeatNumber = seat;
             seat = 0;
@@ -58,14 +59,21 @@ public class SeatService {
                         .placeNumber(seat)
                         .room(savedRoom)
                         .build();
-                seats.add(seatToCreate);
+                seatRepository.save(seatToCreate);
             }
         }
-
-        seats.forEach(seatRepository::save);
     }
 
     public List<Seat> findSpectacleSeats(UUID spectacleId) {
-        return seatRepository.findSpectacleSeats(spectacleId);
+        return seatRepository.findAvailableSpectacleSeats(spectacleId);
+    }
+
+    public List<Seat> reserveSeats(Spectacle spectacle, List<UUID> seatToReserveIds) {
+        seatValidator.checkAreAvailableSeats(spectacle, seatToReserveIds);
+        List<Seat> reservedSeats = seatRepository.findAvailableSpectacleSeats(spectacle.getId()).stream()
+                .filter(seat -> seatToReserveIds.contains(seat.getSeatId()))
+                .collect(Collectors.toList());
+        reservedSeats.forEach(seat -> seatRepository.reserveSeat(spectacle.getId(), seat.getSeatId()));
+        return reservedSeats;
     }
 }

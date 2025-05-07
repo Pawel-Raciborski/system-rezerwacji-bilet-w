@@ -71,4 +71,15 @@ public class SpectacleRepositoryImpl implements SpectacleRepository {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public Optional<Spectacle> findById(UUID spectacleId) {
+        try(Session session = sessionFactory.openSession()){
+            Spectacle spectacle = session.get(Spectacle.class, spectacleId);
+
+            return Optional.ofNullable(spectacle);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }

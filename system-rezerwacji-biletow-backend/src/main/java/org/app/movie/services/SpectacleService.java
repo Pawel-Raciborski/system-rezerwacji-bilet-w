@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class SpectacleService {
@@ -67,4 +68,12 @@ public class SpectacleService {
     public List<Spectacle> findAllForDate(String date) {
         return spectacleRepository.findAllForDate(date);
     }
+
+    public Spectacle findById(UUID spectacleId) {
+        return spectacleRepository.findById(spectacleId)
+                .orElseThrow(() -> new RuntimeException("Nie znaleziono podanego spektaklu!"));
+    }
+
+
+
 }

@@ -1,5 +1,9 @@
 package org.app.reservation;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.app.movie.Spectacle;
 import org.app.room.Seat;
 import org.app.user.model.User;
@@ -10,6 +14,10 @@ import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
 
+@Builder
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="reservation")
 public class Reservation {

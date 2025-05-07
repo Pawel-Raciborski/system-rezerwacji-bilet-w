@@ -27,4 +27,10 @@
             implementation="org.app.movie.web_service.SpectacleWebServiceImpl"
             url-pattern="/ws/SpectacleWebService"
     />
+
+    <endpoint
+            name="ReservationWebService"
+            implementation="org.app.reservation.web_service.ReservationWebServiceImpl"
+            url-pattern="/ws/ReservationWebService"
+    />
 </endpoints>

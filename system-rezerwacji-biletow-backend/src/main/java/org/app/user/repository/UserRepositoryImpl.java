@@ -8,6 +8,7 @@ import org.hibernate.query.Query;
 
 import java.util.Optional;
 import java.util.Properties;
+import java.util.UUID;
 
 public class UserRepositoryImpl implements UserRepository {
     private final SessionFactory sessionFactory;
@@ -36,14 +37,26 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void save(User user) {
+    public User save(User user) {
         try(Session session = sessionFactory.openSession()){
             session.beginTransaction();
             session.save(user);
 
             session.getTransaction().commit();
+            return user;
         }catch (Exception e){
-            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Optional<User> findById(UUID userId) {
+        try(Session session = sessionFactory.openSession()){
+            User user = session.get(User.class, userId);
+
+            return Optional.ofNullable(user);
+        }catch (Exception e){
+            throw new RuntimeException(e);
         }
     }
 }

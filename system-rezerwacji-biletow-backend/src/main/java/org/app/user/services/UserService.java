@@ -6,12 +6,18 @@ import org.app.user.model.LoggedUser;
 import org.app.user.model.User;
 import org.app.user.model.UserDto;
 import org.app.user.repository.UserRepository;
+import org.app.user.repository.UserRepositoryImpl;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+
+    public UserService() {
+        this.userRepository = new UserRepositoryImpl();
+    }
 
     public LoggedUser login(Credentials credentials){
         String email = credentials.getEmail();
@@ -33,9 +39,9 @@ public class UserService {
                 .build();
     }
 
-    public void register(UserDto userDto){
+    public User register(UserDto userDto){
         User userToRegister = buildUser(userDto);
-        userRepository.save(userToRegister);
+        return userRepository.save(userToRegister);
     }
 
     private User buildUser(UserDto userDto) {
@@ -45,5 +51,11 @@ public class UserService {
                 .password(userDto.getPassword())
                 .phoneNumber(userDto.getPhoneNumber())
                 .build();
+    }
+
+    public User findById(UUID userId) {
+        return userRepository.findById(userId).orElseThrow(
+                () -> new RuntimeException("Nie znaleziono użytkownika!")
+        );
     }
 }

@@ -13,6 +13,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "seat")
 @ToString(of={"row","placeNumber"})
+@EqualsAndHashCode(of={"seatId"})
 public class Seat {
 
     @Id

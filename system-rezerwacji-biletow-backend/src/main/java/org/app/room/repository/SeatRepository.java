@@ -3,6 +3,7 @@ package org.app.room.repository;
 import org.app.room.Seat;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface SeatRepository {
@@ -10,5 +11,9 @@ public interface SeatRepository {
 
     List<Seat> findRoomSeats(UUID roomId);
 
-    List<Seat> findSpectacleSeats(UUID spectacleId);
+    List<Seat> findAvailableSpectacleSeats(UUID spectacleId);
+
+    Optional<Seat> findInReserved(UUID id, UUID seatId);
+
+    void reserveSeat(UUID id, UUID seatId);
 }

@@ -15,7 +15,7 @@ import javax.jws.soap.SOAPBinding;
 public interface UserWebService {
 
     @WebMethod
-    void saveUser(UserDto user);
+    LoggedUser saveUser(UserDto user);
 
     @WebMethod
     @WebResult(name = "loggedUser")
